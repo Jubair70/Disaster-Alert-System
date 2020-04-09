@@ -1,0 +1,78 @@
+{% extends 'base_test.html' %}
+{% load i18n %}
+{% load app_filters %}
+{% block additional-headers %}
+<link rel="stylesheet" href="/static/plugins/dataTables1.10.20/jquery.dataTables.min.css"/>
+<link rel="stylesheet" href="/static/plugins/bootstrap-datepicker3/bootstrap-datepicker3.min.css"/>
+{% endblock %}
+{% block content %}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+
+                <i class="fas fa-file icon-gradient bg-danger">
+                </i>
+            </div>
+            <div>Upload Form</div>
+        </div>
+       
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <form id="user_form" method="post" action="/modules/upload-cyclone-forecast-files/" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6">
+                            <div class="position-relative form-group ">
+                                <label>File Name:</label>
+                                <input type="text" name="file_name" class="form-control" required>
+                            </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                            <div class="position-relative form-group ">
+                                <label>Source:</label>
+                                <select id="file_source" name="file_source" class="form-control" required>
+                                    <option value="">Select One</option>
+                                    {% for x in file_src_list %}
+                                    <option value="{{ x }}">{{ x }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                               <div class="col-md-6">
+        <div class="form-group">
+            <label>Date of Forecasting: </label>    
+            <input type="text" class="datepicker form-control"  name="forecast_date" id="forecast_date" readonly required="">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label class="">Upload File</label>
+            <input name="uploaded_file" id="uploaded_file" type="file" class="form-control-file" required>
+        </div>
+    </div>
+</div>
+                <button type="submit" class="mt-1 btn btn-primary" id="submit" >Submit</button>
+                <button onclick="history.go(-1);" style="margin-right:10px;" type="button" class="mt-1 btn btn-warning">Cancel</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block additional-javascript %}
+<script type="text/javascript" src="/static/scripts/grcmodule/upload_forecast_files_form.js"></script>
+{% endblock %}

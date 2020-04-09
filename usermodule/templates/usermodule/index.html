@@ -1,0 +1,178 @@
+{% extends 'base_test.html' %}
+{% load i18n %}
+{% load app_filters %}
+{% block additional-headers %}
+    <head>
+        <title>
+            {% block title %} User Adminstration {% endblock %}
+        </title>
+    </head>
+    <link rel="stylesheet" href="/static/plugins/data-tables/DT_bootstrap.css"/>
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fas fa-users icon-gradient bg-danger">
+                    </i>
+                </div>
+                <div>Users</div>
+            </div>
+            {% if admin %}
+                <div class="page-title-actions">
+                    <a type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="Registration"
+                       class="mb-2 mr-2 btn-transition btn btn-outline-secondary" href="/usermodule/register/"><i
+                            class="fa fa-user-plus"></i></a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <table class="mb-0 table">
+                        <thead class="flip-content">
+                        <tr>
+                            <th>Name</th>
+                            <th>Organization</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th class="td-center">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.full_name }}</td>
+                                <td>{{ user.organisation_name }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.role_name }}</td>
+                                <td class="td-center">
+                                    <a class="tooltips" data-toggle="tooltip" data-placement="top"
+                                       data-original-title="Edit User"
+                                       href="/usermodule/edit/{{ user.id }}"><i class="fas  fa-user-edit"></i></a>
+                                    {#                   <a class="tooltips" data-placement="top" data-original-title="Catchment Area"#}
+                                    {#                     href="/usermodule/catchment_tree/{{user.id}}"><i class="fa fa-globe"></i></a>#}
+{#                                    <a class="delete-user-item tooltips"  data-placement="top"#}
+{#                                       data-original-title="Delete User" href="#"#}
+{#                                       data-href="/usermodule/delete/{{ user.id }}" data-toggle="modal"#}
+{#                                       data-target="#confirm-delete"><i class="fas fa-user-times"></i></a>#}
+                                    <a class="tooltips" data-placement="top" data-toggle="tooltip"
+                                       data-original-title="Reset Password"
+                                       href="/usermodule/reset-password/{{ user.id }}"><i
+                                            class="fas fa-user-cog"></i></a>
+{#                                    <a class="delete-user-item tooltips" data-toggle="tooltip" data-placement="top"#}
+{#                                       data-original-title="Inactive User" href="#"#}
+{#                                       data-href="/usermodule/inactive_user/{{ user.id }}" data-toggle="modal"#}
+{#                                       data-target="#confirm-inactive"><i class="fas fa-user-slash"></i></a>#}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="confirm-delete" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>You are about to delete a user, this procedure is irreversible.</p>
+                    <p>Do you want to proceed?</p>
+                    <p class="debug-url"></p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn btn-danger btn-ok">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="confirm-inactive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>You are about to inactive a user, this procedure is irreversible.</p>
+                    <p>Do you want to proceed?</p>
+                    <p class="debug-url"></p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn btn-danger btn-ok">Inactivate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block additional-javascript %}
+
+    <script type="text/javascript" src="/static/plugins/data-tables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="/static/plugins/data-tables/DT_bootstrap.js"></script>
+    <script>
+
+
+{#        $(document).ready(function () {#}
+            $('#user_table').dataTable({
+                // set the initial value
+                "iDisplayLength": 10,
+                "sPaginationType": "bootstrap",
+                "aLengthMenu": [
+                    [10, 20, 50, -1],
+                    [10, 20, 50, "All"] // change per page values here
+                ],
+                "aoColumnDefs": [{
+                    'bSortable': false,
+                    'aTargets': [3]
+                }
+                ]
+            });
+
+            $('#user_table_wrapper .dataTables_filter input').addClass("form-control input-medium"); // modify table search input
+            $('#user_table_wrapper .dataTables_length select').addClass("form-control input-xsmall"); // modify table per page dropdown
+
+            if ($('.alert-block').is(':visible')) {
+                window.setTimeout(function () {
+                    $(".alert-success").fadeTo(1500, 0).slideUp(500, function () {
+                        $(this).remove();
+                    });
+                }, 5000);
+            }
+
+
+
+{#        });#}
+      $('.delete-user-item').on('click', function (e) {
+            var criteria_id = $(this).attr("data-href");
+            $('.btn-ok').attr("href", criteria_id);
+        });
+
+    </script>
+{% endblock %}

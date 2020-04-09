@@ -1,0 +1,230 @@
+{% extends 'base_test.html' %}
+{% load i18n %}
+{% load app_filters %}
+{% block additional-headers %}
+{% endblock %}
+{% block content %}
+
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="fas fa-users icon-gradient bg-danger">
+                </i>
+            </div>
+            <div>Message Recepient List</div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-7" >
+        <button class="mb-2 mr-2 btn-transition btn btn-outline-focus pull-right" id="add-team" hidden>Add Team</button>
+        <button class="mb-2 mr-2 btn-transition btn btn-outline-focus pull-right" id="add-recepient">Add Recepient</button>
+    </div>
+</div>
+
+<div class="box-body" id="recepient_list_div">
+    <div class="row">
+        <div class="col-md-12">
+            <table id="recepient_list" class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Organization</th>
+                    <th>E-mail</th>
+                    <th>Phone No.</th>
+                    <th>Recepient Group</th>
+                    <th>Date Added</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block modal %}
+<div class="modal fade add-team-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Team</h4>
+                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <form role="form" id="add-team-form" enctype="multipart/form-data">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                <input type="hidden" name="password" value=""/>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>Team Name</label>
+                            <div class="input-group">
+                                <input type="text" name="team-name" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn custom-submit-btn btn-success" id="team_add_submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade add-recepient-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Recepient</h4>
+                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" id="add-recepient-form" enctype="multipart/form-data">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                <input type="hidden" name="password" value=""/>
+                <div class="modal-body">
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Name :</label>
+                        <div class="">
+                            <input type="text" class="form-control" name="recepient_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Organization :</label>
+                        <div class="">
+                            <input type="text" class="form-control {required:true}" name="organization" required>
+                        </div>
+                    </div>
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Email Address</label>
+                        <div class="">
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <span id="personal_email_error" class="text-red"></span>
+                    </div>
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Phone Number :</label>
+                        <div class="">
+                            <input type="text" class="form-control" name="mobile_no" required>
+                        </div>
+                        <span id="mobile_error" class="text-red"></span>
+                    </div>
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Select Team :</label>
+                        <div class="">
+                            <select class="form-control select2" multiple="multiple" id="team-dropdown" name="team" required></select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn custom-submit-btn btn-success" id="recepient_add_submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade edit-recepient-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Recepient</h4>
+                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <form role="form" id="edit-recepient-form" enctype="multipart/form-data">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                <input type="hidden" name="password" value=""/>
+                <div class="modal-body">
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Name :</label>
+                        <div class="">
+                            <input type="text" class="form-control" name="edit_recepient_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Organization :</label>
+                        <div class="">
+                            <input type="text" class="form-control" name="edit_organization" required>
+                        </div>
+                    </div>
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Email Address</label>
+                        <div class="">
+                            <input type="email" class="form-control" name="edit_email" required>
+                        </div>
+                    </div>
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Phone Number :</label>
+
+                        <div class="">
+                            <input type="text" class="form-control" name="edit_mobile_no" required>
+                        </div>
+                    </div>
+                    <div class="form-group very-compact-form-group col-md-12">
+                        <label>Select Teammmm :</label>
+                        <div class="">
+                            <select class="form-control select2" multiple="multiple" id="edit-team-dropdown" name="edit_team"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn custom-submit-btn btn-success" id="recepient_edit_submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="confirm-recepient-delete" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+
+        <form role="form" id="delete-recepient-form" enctype="multipart/form-data"
+                data-parsley-validate>
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+            <input type="hidden" name="password" value=""/>
+            <div class="modal-body">
+                <p class="mb-0">Are you sure to delete this recepient ?</p>
+                <p class="debug-url"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger btn-ok" id="recepient_delete_submit">Delete</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional-javascript %}
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script>
+    var all_data = {{ data | safe }};
+</script>
+<script type="text/javascript" src="/static/scripts/recepient_list/recepient_list.js"></script>
+{% endblock %}

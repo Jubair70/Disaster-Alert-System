@@ -1,0 +1,970 @@
+{% include 'usermodule/header.html' %}
+{% include 'usermodule/navigation.html' %}
+<section class="home-slider-section custom-slider get-height">
+    <!-- Full Page Image Background Carousel Header -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="fill"
+                     style="background-image:url('/static/dashboard/assets/images/home/slide1.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>PROTTASHA MANAGEMENT INFORMATION SYSTEM</h2>
+                </div>
+            </div>
+            <div class="item ">
+                <div class="fill"
+                     style="background-image:url('/static/dashboard/assets/images/home/slide2.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>PROTTASHA MANAGEMENT INFORMATION SYSTEM</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill"
+                     style="background-image:url('/static/dashboard/assets/images/home/slide3.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>PROTTASHA MANAGEMENT INFORMATION SYSTEM</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill"
+                     style="background-image:url('/static/dashboard/assets/images/home/slide4.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>PROTTASHA MANAGEMENT INFORMATION SYSTEM</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.welcom-section -->
+
+<section class="welcome-section base-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="title text-center text-primary">BANGLADESH: SUSTAINABLE REINTEGRATION AND IMPROVED MIGRATION
+                    GOVERNANCE (PROTTASHA)</h2>
+                <p class="text-center">To contribute to the sustainable reintegration of returnees and the progressive
+                    achievement
+                    of SDG 10.7, “to facilitate orderly, safe, regular and responsible migration and mobility of people,
+                    including through
+                    the implementation of planned and well-managed policies” in Bangladesh</p>
+
+            </div>
+            <!-- /.col-md-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /.welcom-section -->
+
+<section class="project-overview base-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="title text-center text-primary">Project Overview</h2>
+                <p class="text-center"><strong>Duration:</strong> 4 years (April 2017—April 2021) | <strong>Funded by:</strong> The European Union | <strong>Lead Ministries:</strong> The Ministry of Expatriates Welfare and Overseas Employment (MoEWOE) and The Ministry of Foreign Aairs (MoFA) | <strong>Implementing Partner:</strong> BRAC | <strong>Service Coverage:</strong> 64 Districts of Bangladesh</p>
+
+            </div>
+            <!-- /.col-md-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+
+<section class="service-section base-padding service-section-bg">
+    <div class="container">
+        <h2 class="main-title title text-center text-primary">STRATEGIC OBJECTIVE</h2>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <div class="thumbnail"><img src="/static/dashboard/assets/images/design-solution.jpg"
+                                            alt="DESIGN SOLUTIONS">
+                    <div class="caption">
+                        <h2 class="title text-primary text-left">
+                            Strategic Objective 01
+                        </h2>
+                        <p> Irregular migrants returning to Bangladesh are sustainably reintegrated. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="thumbnail"><img src="/static/dashboard/assets/images/coding.jpg" alt="Optimize Decisions">
+                    <div class="caption">
+                        <h2 class="title text-primary text-left">
+                            Strategic Objective 02
+                        </h2>
+                        <p> Improved migration governance facilitates regular, safe and orderly migration in
+                            Bangladesh’ </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="thumbnail"><img src="/static/dashboard/assets/images/unity.jpg" alt="SOLUTIONS MANAGE">
+                    <div class="caption">
+                        <h2 class="title text-primary text-left">
+                            Strategic Objective 03
+                        </h2>
+                        <p> Returning Migrants, aspirant migrants, families, communities and local government and
+                            private sector actors consistently make informed decisions about migration, and practice and
+                            promote safe, orderly and regular, migration behaviours, including remittance
+                            management </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /.welcome-section -->
+<!-- start here -->
+
+
+<section class=" base-padding">
+    <div class="container">
+        <div class="row">
+            <h2 class="title text-center text-primary">Sustainable Reintegration</h2>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% for d in d_eco_reintegration_support %}
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="4"><h2 class="title1 text-primary1 text-left">Beneficiaries Receiving
+                                        Economic Reintegration Support</h2></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td align="right" class="july-top">{{ curr_month }}</td>
+                                    <td align="right" class="cumulative-top">Cumulative</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/reintegration-plans.png">
+                                    <td align="left">Completed Reintegration Plans</td>
+                                    <td align="right" class="july">{{ d.cur_com_reintgration_plan | safe }} </td>
+                                    <td align="right" class="cumulative">{{ d.total_com_reintgration_plan }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/kind-support.png"></td>
+                                    <td align="left">Received in Kind Support</td>
+                                    <td align="right" class="july">{{ d.cur_inkind_sup }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_inkind_sup }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/skills-training.png"></td>
+                                    <td align="left">Referred for Skills Training</td>
+                                    <td align="right" class="july">{{ d.cur_ref_training }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_ref_training }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/other-support.png"></td>
+                                    <td align="left">Referred for Other Support</td>
+                                    <td align="right" class="july">{{ d.cur_ref_other }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_ref_other }}</td>
+                                </tr>
+                            </table>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% for d in d_psycosocial_support %}
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="4"><h2 class="title1 text-primary1 text-left">Beneficiaries Receiving
+                                        Psycho-Social Support</h2></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td align="right" class="july-top">{{ curr_month }}</td>
+                                    <td align="right" class="cumulative-top">Cumulative</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/enrolled.png"></td>
+                                    <td align="left">Enrolled</td>
+                                    <td align="right" class="july">{{ d.cur_psychosocial_assessment }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_psychosocial_assessment }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/reintegration-plans.png"></td>
+                                    <td align="left">Completed</td>
+                                    <td align="right" class="july">{{ d.cur_psychosocial_followup_completed }}</td>
+                                    <td align="right"
+                                        class="cumulative">{{ d.total_psychosocial_followup_completed }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/trauma-counselling.png"></td>
+                                    <td align="left">Referred for Trauma Counselling</td>
+                                    <td align="right" class="july">{{ d.cur_ref_trauma_counceling }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_ref_trauma_counceling }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/medical-treatment.png"></td>
+                                    <td align="left">Referred for Medical Treatment</td>
+                                    <td align="right" class="july">{{ d.cur_ref_medi_treatment }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_ref_medi_treatment }}</td>
+                                </tr>
+                            </table>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% for d in d_social_reintegration_support %}
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="4"><h2 class="title1 text-primary1 text-left">Social Reintegration
+                                        Support</h2></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td align="right" class="july-top">{{ curr_month }}</td>
+                                    <td align="right" class="cumulative-top">Cumulative</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/workshops.png"></td>
+                                    <td align="left">Workshops</td>
+                                    <td align="right" class="july">{{ d.cur_workshop }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_workshop }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/ipt-shows.png"></td>
+                                    <td align="left">IPT Shows</td>
+                                    <td align="right" class="july">{{ d.cur_iptshow }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_iptshow }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/forum-meetings.png"></td>
+                                    <td align="left">Forum Meetings</td>
+                                    <td align="right" class="july">{{ d.cur_forum_meeting }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_forum_meeting }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/forum-meetings.png"></td>
+                                    <td align="left">DCC Meetings</td>
+                                    <td align="right" class="july">{{ d.cur_dcc_meeting }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_dcc_meeting }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/video-shows.png"></td>
+                                    <td align="left">Video Shows</td>
+                                    <td align="right" class="july">{{ d.cur_video_shows }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_video_shows }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/school-quiz.png"></td>
+                                    <td align="left">School Quiz</td>
+                                    <td align="right" class="july">{{ d.cur_school_shows }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_school_shows }}</td>
+                                </tr>
+                            </table>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% for d in d_number_participants_dashboard %}
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="4"><h2 class="title1 text-primary1 text-left">Number of people reached
+                                        with messages on safe migration, reintegration and remittance management</h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td align="right" class="july-top">{{ curr_month }}</td>
+                                    <td align="right" class="cumulative-top">Cumulative</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/workshops.png"></td>
+                                    <td align="left">IPT Shows</td>
+                                    <td align="right" class="july">{{ d.cur_iptshows }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_iptshows }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/migration-fairs.png"></td>
+                                    <td align="left">Migration Fairs</td>
+                                    <td align="right" class="july">{{ d.cur_migrationfairs }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_migrationfairs }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/forum-meetings.png"></td>
+                                    <td align="left">Tea Stall Meetings</td>
+                                    <td align="right" class="july">{{ d.cur_teastall_meeting }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_teastall_meeting }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/school-programme.png"></td>
+                                    <td align="left">School Programme</td>
+                                    <td align="right" class="july">{{ d.cur_schoolprog }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_schoolprog }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/static/dashboard/assets/images/icons/video-shows.png"></td>
+                                    <td align="left">Video Shows</td>
+                                    <td align="right" class="july">{{ d.cur_videoshows }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_videoshows }}</td>
+                                </tr>
+                            </table>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+</section>
+<!-- /.IMPACT-section -->
+
+
+<section class="base-padding">
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% for d in d_sidedata_dashboard %}
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="4" align="center" valign="middle " bgcolor="#CCCCCC"
+                                        class="cumulative-top">Returnees Identified
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                    <td align="right" class="july-top">{{ curr_month }}</td>
+                                    <td align="right" class="cumulative-top"><strong>Cumulative</strong></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><img
+                                            src="/static/dashboard/assets/images/icons/workshops.png"></td>
+                                    <td align="left">Number of Returnee Identified</td>
+                                    <td align="right" class="july">{{ d.cur_returnee_identified }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_returnee_identified }}</td>
+                                </tr>
+
+                            </table>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% for d in d_sidedata_dashboard %}
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="6" align="center" valign="middle " bgcolor="#CCCCCC"
+                                        class="cumulative-top">Hotline Services
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">&nbsp;</td>
+                                    <td align="right" class="july-top">{{ curr_month }}</td>
+                                    <td align="right" class="cumulative-top"><strong>Cumulative</strong></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><img
+                                            src="/static/dashboard/assets/images/icons/female.png"></td>
+                                    <td align="left" class="cumulative">{{ d.cur_num_female_call }}</td>
+                                    <td align="left" valign="middle"><img
+                                            src="/static/dashboard/assets/images/icons/male.png"></td>
+                                    <td align="left" class="july">{{ d.cur_num_male_call }}</td>
+                                    <td align="right" class="july">{{ d.cur_num_call }}</td>
+                                    <td align="right" class="cumulative">{{ d.total_num_call }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" class="cumulative-top">164 beneciaries received immediate assistance
+                                        to date
+                                    </td>
+                                </tr>
+                            </table>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td colspan="4" align="center" valign="middle " bgcolor="#CCCCCC"
+                                    class="cumulative-top">% of Returnees sustainably reintegrated
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                                <td align="right" class="july-top">{{ curr_month }}</td>
+                                <td align="right" class="cumulative-top"><strong>Cumulative</strong></td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="middle"><img
+                                        src="/static/dashboard/assets/images/icons/workshops.png"></td>
+                                <td align="left">% of Returnees</td>
+                                <td align="right" class="july" id="cur_rs"></td>
+                                <td align="right" class="cumulative" id="total_rs"></td>
+                            </tr>
+
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% for d in d_sidedata_dashboard %}
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="4" align="center" valign="middle " bgcolor="#CCCCCC"
+                                        class="cumulative-top">Number of people reached with messages on safe migration,
+                                        reintegration and remittance utilization.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                    <td align="right" class="july-top">{{ curr_month }}</td>
+                                    <td align="right" class="cumulative-top"><strong>Cumulative</strong></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><img
+                                            src="/static/dashboard/assets/images/icons/workshops.png"></td>
+                                    <td align="left">Number of participants</td>
+                                    <td align="right" class="july" id="cur_np"></td>
+                                    <td align="right" class="cumulative" id="total_np"></td>
+                                </tr>
+
+                            </table>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td colspan="4" align="center" valign="middle " bgcolor="#CCCCCC"
+                                    class="cumulative-top">Returnees Profiled and Screened
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                                <td align="right" class="july-top">{{ curr_month }}</td>
+                                <td align="right" class="cumulative-top"><strong>Cumulative</strong></td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="middle"><img
+                                        src="/static/dashboard/assets/images/icons/kind-support.png"></td>
+                                <td align="left">EU Transit</td>
+                                <td align="right" class="july" id="cur_rp"></td>
+                                <td align="right" class="cumulative" id="total_rp"></td>
+                            </tr>
+
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class=" col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% for d in d_sidedata_dashboard %}
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="4" align="center" valign="middle " bgcolor="#CCCCCC"
+                                        class="cumulative-top">Received immediate assistance
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                    <td align="right" class="july-top">{{ curr_month }}</td>
+                                    <td align="right" class="cumulative-top"><strong>Cumulative</strong></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><img
+                                            src="/static/dashboard/assets/images/icons/workshops.png"></td>
+                                    <td align="left">Number of returnees</td>
+                                    <td align="right" class="july" id="cur_poais"></td>
+                                    <td align="right" class="cumulative" id="total_poais"></td>
+                                </tr>
+
+                            </table>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<section class="base-padding">
+    <div class="container">
+        <div class="row">
+            <h2 class="title text-center text-primary">10 REINTEGRATION SERVICE CENTER (RSC) covering 64 DISTRICTS</h2>
+        </div>
+        <div class="row">
+            <div class=" col-md-12">
+                <div class="thumbnail">
+                    <div class="caption" id="map">
+                        <!--<img src="/static/dashboard/assets/images/bd-map.png">-->
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</section>
+
+
+<!-- /.service-section -->
+
+<section class="testimonial-section base-padding">
+    <div class="container">
+        <h2 class="title text-center text-white">LATEST REPORTS</h2>
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail"><img src="{{ mgi_img_url }}" alt="DESIGN SOLUTIONS">
+                    <div class="caption">
+                        <h2 class="title text-primary text-left">
+                            {{ mgi_file_title | safe }}
+                        </h2>
+
+                        <a type="button" class="btn btn-primary" {% if mgi_file_url %} href="{{ mgi_file_url }}"
+                           download {% endif %}>Download</a></div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail"><img src="{{ sdg_img_url }}" alt="DESIGN SOLUTIONS">
+                    <div class="caption">
+                        <h2 class="title text-primary text-left">
+                            {{ sdg_file_title | safe }}
+                        </h2>
+
+                        <a type="button" class="btn btn-primary" {% if sdg_file_url %} href="{{ sdg_file_url }}"
+                           download {% endif %}>Download</a></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="base-padding">
+    <div class="container">
+        <div class="row">
+            <h2 class="main-title title text-center text-primary">The project is</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-12 text-center">
+                    <div class="service-box"><img src="/static/dashboard/assets/images/partner/bd.png">
+                        <p>Led by Government of the People's Republic of Bangladesh</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 text-center">
+                    <div class="service-box"><img src="/static/dashboard/assets/images/partner/un.png">
+                        <p>Funded by the European Union</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 text-center">
+                    <div class="service-box"><img src="/static/dashboard/assets/images/partner/iom.png">
+                        <p>Implemented by IOM</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 text-center">
+                    <div class="service-box"><img src="/static/dashboard/assets/images/partner/brac.png">
+                        <p>In Partnership with BRAC</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+{% block additional-javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}reportmodule/js/bd_admin_3.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}reportmodule/js/bd_admin_1.js"></script>
+    <script>
+        var rdata = {{ region_data|safe }};
+        var region_table = {{ region_table|safe }};
+        var set_rp =
+        {{ RP_DATA_SET|safe }}
+        var set_poais =
+        {{ POAIS_DATA_SET|safe }}
+        var set_rs =
+        {{ RS_DATA_SET|safe }}
+        var set_np =
+        {{ NP_DATA_SET|safe }}
+
+        var d_rs =
+        {{ d_rs | safe }}
+        var d_poais =
+        {{ d_poais | safe }}
+        var d_rp =
+        {{ d_rp | safe }}
+        var d_np =
+        {{ d_np | safe }}
+
+
+        var total_hh = objsum(rdata);
+        $(document).ready(function () {
+
+
+        });
+
+
+        var map = L.map('map').setView([23.946096, 90.128173], 7);
+        {# http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png #}
+        {# https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png #}
+        var cloudmade = L.tileLayer('', {
+            attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+            key: 'BC9A493B41014CAABB98F0471D759707',
+            styleId: 22677
+        }).addTo(map);
+
+
+        // control that shows state info on hover
+        var info = L.control();
+
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+
+        info.update = function (props) {
+            this._div.innerHTML =  (props ?
+                '<b>' + props.NAME_3 + ' </b> ' + rdata[props.NAME_3] + ' (' + (rdata[props.NAME_3] / total_hh * 100).toFixed(1) + '%)'
+                : 'Hover over a district');
+
+            // When Hover a district on map change the following div values
+            if (props) {
+                try {
+                    document.getElementById("cur_rp").innerHTML = '<b>' + set_rp[props.NAME_3]['cur_rp'] + '</b>';
+                    document.getElementById("total_rp").innerHTML = '<b>' + set_rp[props.NAME_3]['total_rp'] + '</b>';
+                }
+                catch (e) {
+                    document.getElementById("cur_rp").innerHTML = '<b> 0</b>';
+                    document.getElementById("total_rp").innerHTML = '<b> 0</b>';
+                }
+                try {
+                    document.getElementById("cur_rs").innerHTML = '<b>' + ( set_rs[props.NAME_3]['cur_rs'] / total_hh * 100).toFixed(1) + '%' + '</b>';
+                    document.getElementById("total_rs").innerHTML = '<b>' + (set_rs[props.NAME_3]['total_rs'] / total_hh * 100).toFixed(1) + '%' + '</b>';
+                }
+                catch (e) {
+                    document.getElementById("cur_rs").innerHTML = '<b> 0%</b>';
+                    document.getElementById("total_rs").innerHTML = '<b> 0%</b>';
+                }
+                try {
+                    document.getElementById("cur_poais").innerHTML = '<b>' + set_poais[props.NAME_3]['cur'] + '</b>';
+                    document.getElementById("total_poais").innerHTML = '<b>' + set_poais[props.NAME_3]['total'] + '</b>';
+
+                }
+                catch (e) {
+                    document.getElementById("cur_poais").innerHTML = '<b> 0</b>';
+                    document.getElementById("total_poais").innerHTML = '<b> 0</b>';
+                }
+
+                try {
+                    document.getElementById("cur_np").innerHTML = '<b>' + set_np[props.NAME_3]['cur_np'] + '</b>';
+                    document.getElementById("total_np").innerHTML = '<b>' + set_np[props.NAME_3]['total_np'] + '</b>';
+
+                }
+                catch (e) {
+                    document.getElementById("cur_np").innerHTML = '<b> 0</b>';
+                    document.getElementById("total_np").innerHTML = '<b> 0</b>';
+                }
+
+            }
+            else {
+
+                document.getElementById("cur_poais").innerHTML = '<b>' + d_poais['curmon_cnt'] + '</b>';
+                document.getElementById("total_poais").innerHTML = '<b>' + d_poais['total_cnt'] + '</b>';
+
+                document.getElementById("cur_rs").innerHTML = '<b>' + (d_rs['curmon_cnt'] / total_hh * 100).toFixed(1) + '%' + '</b>';
+                document.getElementById("total_rs").innerHTML = '<b>' + (d_rs['total_cnt'] / total_hh * 100).toFixed(1) + '%' + '</b>';
+
+                document.getElementById("cur_rp").innerHTML = '<b>' + d_rp['curmon_cnt'] + '</b>';
+                document.getElementById("total_rp").innerHTML = '<b>' + d_rp['total_cnt'] + '</b>';
+
+                document.getElementById("cur_np").innerHTML = '<b>' + d_np['curmon_cnt'] + '</b>';
+                document.getElementById("total_np").innerHTML = '<b>' + d_np['total_cnt'] + '</b>';
+            }
+
+
+        };
+
+        info.addTo(map);
+
+
+        // get color depending on population density value
+        function getColor(s) {
+            d = rdata[s];
+            return d > 200 ? '#71B7FD' :
+                d > 150 ? '#85C1FD' :
+                    d > 100 ? '#71B7FD' :
+                        d > 50 ? '#5DADFD' :
+                            d > 30 ? '#49A3FD' :
+                                d > 10 ? '#3599FD' :
+                                    d > 0 ? '#481bfd' :
+                                        '#FFFFFF';
+        }
+
+        function getColorOld(d) {
+            return d > 200 ? '#71B7FD' :
+                d > 150 ? '#85C1FD' :
+                    d > 100 ? '#71B7FD' :
+                        d > 50 ? '#5DADFD' :
+                            d > 30 ? '#49A3FD' :
+                                d > 10 ? '#3599FD' :
+                                    d > 0 ? '#481bfd' :
+                                        '#FFFFFF';
+        }
+
+        function style(feature) {
+            return {
+                weight: 1,
+                opacity: 1,
+                color: '',
+                dashArray: '3',
+                fillOpacity: 0.7,
+                fillColor: getColor(feature.properties.NAME_3)
+            };
+        }
+
+        function highlightFeature(e) {
+            var layer = e.target;
+
+            layer.setStyle({
+                weight: 2,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7,
+            });
+
+            if (!L.Browser.ie && !L.Browser.opera) {
+                layer.bringToFront();
+            }
+
+            info.update(layer.feature.properties);
+        }
+
+        var geojson;
+
+        function resetHighlight(e) {
+            geojson.resetStyle(e.target);
+            info.update();
+        }
+
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+        }
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: zoomToFeature
+            });
+        }
+
+
+        var all_feature = division_json['features'];
+
+        res = []
+        {#        for (var i = 0; i < all_feature.length; i++) {#}
+        {#            var feature = all_feature[i];#}
+        {#            var property = feature.properties;#}
+        {#            var latlong = feature.geometry.coordinates;#}
+        {#            console.log(latlong.flat(2))#}
+        {#            trt = []#}
+        {#            trt = latlong.flat(2);#}
+        {#            for(var j = 0;j<trt.length;j++)#}
+        {#            {#}
+        {#                [trt[j][0], trt[j][1]] = [trt[j][1], trt[j][0]];#}
+        {##}
+        {#            }#}
+        {#            L.polyline(trt, {#}
+        {#                color: 'red',weight:1#}
+        {#            }).addTo(map);#}
+        {##}
+        {#            }#}
+
+
+        geojson = L.geoJson(division_json, {
+            style: division_style
+        }).addTo(map);
+
+        textmarker(division_json['features']);
+
+        geojson = L.geoJson(statesData, {
+            style: style,
+            onEachFeature: onEachFeature
+        }).addTo(map);
+
+        function sortFunction(a, b) {
+            if (a[0] === b[0]) {
+                return 0;
+            }
+            else {
+                return (a[0] < b[0]) ? -1 : 1;
+            }
+        }
+
+        function division_style(feature) {
+            return {
+                weight: 2,
+                opacity: 1,
+                color: 'red',
+                dashArray: '1',
+                fillOpacity: 0
+            };
+        }
+
+
+        function getCentroid2(arr) {
+            var twoTimesSignedArea = 0;
+            var cxTimes6SignedArea = 0;
+            var cyTimes6SignedArea = 0;
+
+            var length = arr.length
+
+            var x = function (i) {
+                return arr[i % length][0]
+            };
+            var y = function (i) {
+                return arr[i % length][1]
+            };
+
+            for (var i = 0; i < arr.length; i++) {
+                var twoSA = x(i) * y(i + 1) - x(i + 1) * y(i);
+                twoTimesSignedArea += twoSA;
+                cxTimes6SignedArea += (x(i) + x(i + 1)) * twoSA;
+                cyTimes6SignedArea += (y(i) + y(i + 1)) * twoSA;
+            }
+            var sixSignedArea = 3 * twoTimesSignedArea;
+            return [cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];
+        }
+
+        function textmarker(all_feature) {
+
+            for (var i = 0; i < all_feature.length; i++) {
+                var feature = all_feature[i];
+                var property = feature.properties;
+                var latlong = feature.geometry.coordinates;
+                center = getCentroid2(latlong.flat(2))
+                console.log(latlong[0][0][0], getCentroid2(latlong.flat(2)))
+                var text_html = property['NAME_1'];
+
+                var myTextLabel = L.marker([center[1], center[0]], {
+                    icon: L.divIcon({
+                        className: 'text-labels',   // Set class for CSS styling
+                        html: text_html,
+                    }),
+                    zIndexOffset: 1000     // Make appear above other map features
+                });
+                myTextLabel.addTo(map);
+            }
+        }
+
+        var legend = L.control({position: 'bottomleft'});
+
+        legend.onAdd = function (map) {
+
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = [0, 10, 30, 50, 100, 150, 200],
+                labels = [],
+                from, to;
+
+            for (var i = 0; i < grades.length; i++) {
+                from = grades[i];
+                to = grades[i + 1];
+
+                labels.push(
+                    '<i style="background:' + getColorOld(from + 1) + '"></i> ' +
+                    from + (to ? '&ndash;' + to : '+') + '<br>');
+            }
+
+            div.innerHTML = labels.join('<br>');
+            return div;
+        };
+
+        legend.addTo(map);
+
+        map.scrollWheelZoom.disable();
+
+
+        function objsum(obj) {
+
+            var vals = Object.keys(obj).map(function (keys) {
+                return obj[keys];
+            });
+            var val_arr = vals;
+            for (var i = 0, sum = 0; i < val_arr.length; sum += val_arr[i++]) ;
+            return sum;
+        }
+
+
+    </script>
+
+
+{% endblock %}
+{% include 'usermodule/footer-domain.html' %}
+{% include 'usermodule/footer.html' %}

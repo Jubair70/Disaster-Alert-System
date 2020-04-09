@@ -1,0 +1,198 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Login - mPower Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"
+    />
+    <meta name="description" content="ArchitectUI HTML Bootstrap 4 Dashboard Template">
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+<link href="/static/architectui-html-admin/main.css" rel="stylesheet">
+</head>
+
+
+<body>
+<div class="app-container app-theme-white body-tabs-shadow" style="overflow: hidden;">
+        <div class="app-container">
+            <div class="h-100">
+                <div class="h-100 no-gutters row">
+                    <div class="d-none d-lg-block col-lg-4" style="background: #02733E;">
+<!--                        <div class="slider-light">-->
+<!--                            -->
+<!--                                       -->
+<!--                                        <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">-->
+<!--                                            <div class="carousel-inner">-->
+<!--                                                <div class="carousel-item active">-->
+<!--                                                    <img class="d-block w-100 slide-img-bg" src="/static/architectui-html-admin/assets/images/city.jpg" alt="First slide">-->
+<!--                                                </div>-->
+<!--                                                <div class="carousel-item">-->
+<!--                                                    <img class="d-block w-100 slide-img-bg" src="/static/architectui-html-admin/assets/images/city.jpg" alt="Second slide">-->
+<!--                                                </div>-->
+<!--                                                <div class="carousel-item">-->
+<!--                                                    <img class="d-block w-100 slide-img-bg" src="/static/architectui-html-admin/assets/images/city.jpg" alt="Third slide">-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">-->
+<!--                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--                                                <span class="sr-only">Previous</span>-->
+<!--                                            </a>-->
+<!--                                           -->
+<!--                                            <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">-->
+<!--                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--                                                <span class="sr-only">Next</span>-->
+<!--                                            </a>-->
+<!--                                        </div>-->
+<!--                                    -->
+<!--                        </div>-->
+                    </div>
+                    <div class="h-100 d-flex bg-white justify-content-center align-items-center col-md-12 col-lg-8">
+                        <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
+                            <div class="app-logo mb-3"></div>
+                            <h4 class="mb-0">
+                                <span class="d-block">Welcome back,</span>
+                                <span>Please sign in to your account.</span></h4>
+                            <h6 class="mt-3">No account? <a href="javascript:void(0);" class="text-primary">Sign up now</a></h6>
+                            <div class="divider row"></div>
+                            <div>
+                                <form class="" action="/usermodule/login/" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="position-relative form-group"><label for="exampleEmail" class="" >Email</label><input name="username" id="exampleEmail" placeholder="Email here..." type="email" class="form-control"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="position-relative form-group"><label for="examplePassword" class="">Password</label><input name="password" id="examplePassword" placeholder="Password here..." type="password"
+                                                                                                                                                   class="form-control"></div>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative form-check"><input name="check" id="exampleCheck" type="checkbox" class="form-check-input"><label for="exampleCheck" class="form-check-label">Keep me logged in</label></div>
+                                    <div class="divider row"></div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-auto"><a href="javascript:void(0);" onclick="get_forget_pass_modal()" class="btn-lg btn btn-link">Recover Password</a>
+                                            <button class="btn btn-primary btn-lg">Login to Dashboard</button>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="redirect_url" name="redirect_url" value="{{redirect_url}}"/>
+                                </form>
+                            </div>
+                            <br><br><br><span class="d-block" style="font: -webkit-control;">Supported by</span>
+                            <div style="margin-left: -26px;"><img src="/static/architectui-html-admin/assets/images/grc_others_logo.png" style="zoom: 120%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="modal" id="forget_password">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+     <div class="modal-header">
+        <h4 class="modal-title" id="modal_title">Recover</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="horizontal-form"  method="post" id = "forget_pass_form" action="/usermodule/send_otp/"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label >Enter email address you are registered with. </label>
+                                <input type="text" class="form-control" name="email" id="email" required onblur="check_valid_user_email(this)">
+                                <input type="hidden" name="baseurl" value="" id="baseurl">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <button class="btn btn-danger" id="submit" name="submit" type="submit"
+                                    data-original-title=""
+                                    title="">Submit</button>
+
+                        </div>
+                        <div class="col-md-2">
+                            <button data-dismiss="modal" type="button"
+                                    class="btn btn-info" data-original-title="" title="">Cancel
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+      </div>
+
+      <!-- Modal footer
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      -->
+
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/architectui-html-admin/assets/scripts/main.js"></script>
+
+<script>
+    function get_forget_pass_modal() {
+            $('#forget_password').appendTo("body").modal('show');
+            $('#email').val('');
+            $('#baseurl').val(window.location.origin);
+        }
+
+        $(document).on("submit", "#forget_pass_form", function (event) {
+            event.preventDefault();
+            form_url = $(this).attr('action')
+            $.ajax({
+                type: 'POST',
+                url: form_url,
+                data: $(this).serialize(),
+                success: function (data) {
+                    alert(data)
+                    $('#forget_password').modal('toggle');
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText); // the message
+                    $('#forget_password').modal('toggle');
+                }
+            }); //ajax endblock
+            return false;
+        });
+
+    function check_valid_user_email(obj) {
+            $.ajax({
+                type: 'POST',
+                url: '/usermodule/check_valid_user_email/',
+                data: {'user_name' : $("#user_name").val(),'email' : obj.value},
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText); // the message
+                    $('#forget_password').modal('toggle');
+                    //$('.modal-backdrop').hide();
+                    }
+            }); //ajax endblock
+            return false;
+
+        }
+
+</script>
+</body>
+</html>

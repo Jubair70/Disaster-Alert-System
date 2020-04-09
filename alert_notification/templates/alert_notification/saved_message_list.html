@@ -1,0 +1,257 @@
+{% extends 'base_test.html' %}
+{% load i18n %}
+{% load app_filters %}
+{% block additional-headers %}
+{% endblock %}
+{% block content %}
+
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="fas fa-envelope icon-gradient bg-danger">
+                </i>
+            </div>
+            <div>Saved Message History</div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4" style="margin-bottom:30px">
+        <button type="button" class="btn btn-success"
+                title="" id="compose-message-button">Compose Message
+        </button>
+        <a href="#">
+            <button type="button" class="btn btn-success"
+                    title="" id="saved-message-button">Saved Message
+            </button>
+        </a>
+    </div>
+</div>
+
+<div class="box-body" id="saved_message_list_div">
+    <div class="row">
+        <div class="col-md-12">
+
+            <table id="saved_message_list" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Message ID</th>
+                        <th>Content</th>
+                        <th>Description</th>
+                        <th>Message Saved</th>
+                        <th>Recepient Group</th>
+                        <th>Alert Stage</th>
+                        <th>Message Type</th>
+                        <th>Number of Recepients</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block modal %}
+<div class="modal fade" id="edit-message-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Message</h4>
+                    <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                </div>
+
+
+
+
+                <form role="form" id="edit-message-form" enctype="multipart/form-data" data-parsley-validate>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                    <input type="hidden" name="password" value=""/>
+
+
+                    <div class="box-body container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div id="message_type" class="col-md-6">
+                                                <div>
+                                                    <label>Message Type: </label>
+                                                </div>
+                                                <div class="form-group very-compact-form-group">
+                                                        <input type="radio" name="edit_message_type" id="email" value="email">
+                                                        <span class="checkmark">Email</span>
+
+                                                        <input type="radio" name="edit_message_type" id="sms" value="sms">
+                                                        <span class="checkmark">SMS</span>
+
+                                                    <span id="office_cat_error" class="text-red"></span>
+                                                </div>
+                                            </div>
+                                            <div id="edit_process_type" class=" col-md-6">
+                                                <div>
+                                                    <label>Process Type: </label>
+                                                </div>
+                                                <div class="form-group very-compact-form-group">
+                                                        <input type="radio" name="edit_process_type" id="edit_system" value="system" required>
+                                                        <span class="checkmark">System</span>
+
+                                                        <input type="radio" name="edit_process_type" id="edit_manual" value="manual">
+                                                        <span class="checkmark">Manual</span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label>Message Details</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body">
+                                        <div>
+                                            <div class="form-group very-compact-form-group col-md-12 required_field">
+                                                <div class="form-group very-compact-form-group col-md-6">
+                                                    <p>Message: </p>
+                                                </div>
+                                                <div class="form-group very-compact-form-group col-md-8">
+                                                    <input type="textarea" class="form-control" name="edit_message" id="message_id">
+                                                    <span id="message_id_error" class="text-red"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group very-compact-form-group col-md-12 required_field">
+                                                <div class="form-group very-compact-form-group col-md-4">
+                                                    <label>Description: </label>
+                                                </div>
+                                                <div class="form-group very-compact-form-group col-md-8">
+                                                    <input type="textarea" class="form-control" name="edit_message_details" id="message_details">
+                                                    <span id="message_details_error" class="text-red"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="imageupload imageupload_img card panel panel-default">
+                                                    <div class="file-tab card-body panel-body">
+                                                        <label class="btn btn-secondary btn-default btn-file">
+                                                            <!-- The file is stored here. -->
+                                                            <input type="file" name="edit-message-file" id="edit-message-file-id">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropp">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-body">
+                                              <div class="dropp-header">
+                                                <span class="dropp-header__title js-value">Message Recipient Selection</span>
+                                              </div>
+                                            <div class="">
+                                                <select name="edit-team-select" multiple="multiple" id="edit-team-dropdown">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label>Message Details</label>
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-body">
+                                            <div id="disaster_type">
+                                                <div class="row">
+                                                <div class="form-group very-compact-form-group col-md-6">
+                                                     <div><label>Disaster Type: </label></div>
+                                                     <input type="radio" name="edit_disaster_type" id="cyclone" value="cyclone">
+                                                     <span class="checkmark">Cyclone</span>
+                                                     <input type="radio" name="edit_disaster_type" id="flood" value="flood">
+                                                     <span class="checkmark">Flood</span>
+                                                </div>
+                                                <div class="form-group very-compact-form-group col-md-6">
+
+                                                        <lebel class="dropp-header__title js-value">Message Recipient Selection</lebel>
+
+                                                    <select class="form-control" name="edit_stage_id">
+                                                        <option value="1">Stage 1</option>
+                                                        <option value="2">Stage 2</option>
+                                                        <option value="3">Stage 3</option>
+                                                        <option value="4">Stage 4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="pull-right col-md-12">
+                        <button type="button" class="btn custom-submit-btn btn-success" id="message_edit_submit">Send Message</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+<div class="modal fade" tabindex="-1" id="confirm-saved-message-delete" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p class="mb-0">Are you sure to delete this message ?</p>
+                <p class="debug-url"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-danger" id="saved_message_delete_submit">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional-javascript %}
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    var all_data = {{ data | safe }};
+</script>
+
+<script type="text/javascript" src="/static/scripts/alert_notification/saved_message_list.js"></script>
+{% endblock %}

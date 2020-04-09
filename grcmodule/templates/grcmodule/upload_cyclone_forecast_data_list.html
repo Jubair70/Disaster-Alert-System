@@ -1,0 +1,97 @@
+{% extends 'base_test.html' %}
+{% load i18n %}
+{% load app_filters %}
+{% block additional-headers %}
+{% endblock %}
+{% block content %}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="fas fa-file icon-gradient bg-danger">
+                </i>
+            </div>
+            <div>Cyclone Forecast Files</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>From Date: </label>
+            <input type="text" class=" datepicker form-control"  name="from_date" id="from_date" readonly>
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>To Date: </label>
+            <input type="text" class=" datepicker form-control" name="to_date" id="to_date" readonly>
+
+        </div>
+    </div>
+    <div class="col-md-3" style="margin-top: 30px;">
+        <button class="mb-2 mr-2 btn-transition btn btn-outline-focus" id="generate_report" >Search</button>
+    </div>
+    <div class="col-md-3" style="margin-top: 30px;">
+        <a href="/modules/upload-cyclone-forecast-files/">
+            <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-focus pull-right" id="add_new"
+                    title="">Upload File
+            </button>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <table id="all_info_table" class="table table-bordered table-striped table-condensed nowrap">
+                    <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>File Name</th>
+                        <th>Added on</th>
+                        <th>Added by</th>
+                        <th>Status</th>
+<!--                        <th class="td-center">Action</th>-->
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block modal %}
+<div class="modal fade" tabindex="-1" id="confirm-delete" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p class="mb-0">You are about to delete a forecast file, this procedure is irreversible.</p>
+                <p class="mb-0">Do you want to proceed?</p>
+                <p class="debug-url"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-danger btn-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block additional-javascript %}
+
+<script type="text/javascript" src="/static/scripts/grcmodule/upload_cyclone_forecast_data_list.js"></script>
+{% endblock %}

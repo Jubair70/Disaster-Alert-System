@@ -1,0 +1,80 @@
+{% extends 'base_test.html' %}
+{% load i18n %}
+{% load app_filters %}
+{% block additional-headers %}
+<link rel="stylesheet" href="/static/plugins/dataTables1.10.20/jquery.dataTables.min.css"/>
+<link rel="stylesheet" href="/static/plugins/bootstrap-datepicker3/bootstrap-datepicker3.min.css"/>
+<link href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="fas fa-feather-alt icon-gradient bg-danger">
+                </i>
+            </div>
+            <div>Dashboard</div>
+        </div>
+       
+    </div>
+</div>
+ <button class="btn btn-primary" id="generate_report" hidden>Search</button>
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body ">
+                <div class="card-title">Flood Forecast Water Level</div>
+                <div class="row">
+                     <div class="col-md-4">
+<!--                         <button class="btn btn-focus" style="margin-bottom:2px ;cursor:default"><span style="font-size: 15px; ">Flood Forecast Water Level</span></button>-->
+                    <table id="all_info_table" class="table table-bordered table-striped table-condensed nowrap">
+                    <thead>
+
+                    <tr>
+                        <th>Source</th>
+                        <th>Flood Watch</th>
+                        <th>Water Level</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                    </table>
+                </div>
+                <div class="col-md-8 pull-right">
+                    <div id="flood_container" style="height:500px; margin-left:60px"></div>
+                </div>
+                </div>
+                <br><br><br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-2 mr-2 badge badge-pill badge-alternate"><a href="http://live3.bmd.gov.bd/"  target="_blank"  style="color:white;">BMD</a></div>
+                        <div class="mb-2 mr-2 badge badge-pill badge-alternate"><a href="https://mausam.imd.gov.in/" target="_blank"   style="color:white;">IMD</a></div>
+                        <div class="mb-2 mr-2 badge badge-pill badge-alternate"> <a href="https://www.ecmwf.int/"  target="_blank"  style="color:white;">ECMWF</a></div>
+                        <div class="mb-2 mr-2 badge badge-pill badge-alternate"> <a href="https://www.windy.com/"  target="_blank"  style="color:white;">Windy</a></div>
+                        <div class="mb-2 mr-2 badge badge-pill badge-alternate"><a href="http://www.ffwc.gov.bd/"  target="_blank"  style="color:white;">FFWC</a></div>
+                        <div class="mb-2 mr-2 badge badge-pill badge-alternate"><a href="https://www.globalfloods.eu/"  target="_blank"  style="color:white;">GloFAS</a></div>
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block additional-javascript %}
+    <script type="text/javascript" src="/static/scripts/grcmodule/dashboard.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+{% endblock %}

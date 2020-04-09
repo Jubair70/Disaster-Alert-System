@@ -1,0 +1,284 @@
+{% extends 'base_test.html' %}
+{% load i18n %}
+{% load app_filters %}
+{% block additional-headers %}
+<link rel="stylesheet" href="/static/plugins/dataTables1.10.20/jquery.dataTables.min.css"/>
+<link rel="stylesheet" href="/static/plugins/bootstrap-datepicker3/bootstrap-datepicker3.min.css"/>
+<link href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""/>
+
+<style>
+    .info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+#mapid, #flood_peak_map, #impact_map
+{
+width:100% !important;
+}
+.leaflet-pane, .leaflet-top, .leaflet-bottom {
+    z-index: 0 !important;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+    background: bisque;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.legend span{
+    margin-top: 6px;
+    margin-right: 10px;
+    display: block;
+    width: 50px;
+    height: 7px;
+    float: left;
+    opacity: 1;
+    text-align: center;
+    font-size: 80%;
+}
+
+.divIcon {
+  text-align: center; /* Horizontally center the text (icon) */
+  line-height: 20px; /* Vertically center the text (icon) */
+}
+
+#info_div_blk, #peak_div_blk
+{
+font-size: 14px;
+}
+
+.selected_btn
+{
+color: #fff;
+background-color: #da3f50;
+border-color: #da3f50;
+}
+
+</style>
+{% endblock %}
+{% block content %}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="fas fa-chart-line icon-gradient bg-danger">
+                </i>
+            </div>
+            <div>Flood EAP Analysis</div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-7" >
+        <button class="mb-2 mr-2 btn-transition btn btn-outline-focus" id="flood-data-btn">Flood Depth Level</button>
+        <button class="mb-2 mr-2 btn-transition btn btn-outline-focus" id="impact_btn">Impact Based on Exposure</button>
+        <button class="mb-2 mr-2 btn-transition btn btn-outline-focus" id="potential_btn">Potential Intervention Area</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body" id="flood_depth_level_div">
+                <div class="card-title">Flood Depth Level</div>
+                <div class="card-title">Data Source:  {{ file_source }}</div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="data-flood-depth" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Division</th>
+                                <th>District</th>
+                                <th>Upazila</th>
+                                <th>Union</th>
+                                <th>Union Code</th>
+                                <th>Category</th>
+                                <th >Current Flood Depth(m)<span id="curr_date"></span></th>
+                                <th >Peak Flood Depth(m)<span id="peak_date"></span></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+
+                            <div class="col-md-11">
+                                <button class="mb-2 mr-2 btn btn-focus btn-block pull-left " id = "info_div_blk"></button>
+
+                            </div>
+<div style="font-size: 20px; margin-top: 8px; cursor:pointer">
+    <span  onclick="export_map('mapid')"><i class="fa fa-download"></i></span>
+</div>
+
+
+
+                        </div>
+
+
+                        <div id="mapid"></div>
+                        <div class="info" id="info_div"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+
+                            <div class="col-md-11">
+                                <button class="mb-2 mr-2 btn btn-focus btn-block pull-left " id = "peak_div_blk"></button>
+
+                            </div>
+<div style="font-size: 20px; margin-top: 8px; cursor:pointer">
+    <span  onclick="export_map('flood_peak_map')"><i class="fa fa-download"></i></span>
+</div>
+
+
+
+                        </div>
+
+                        <div id="flood_peak_map"></div>
+                        <div class="info" id="flood_peak_map_info_div"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-body" id="impact_div">
+                <div class="card-title">Impact Based on Exposure</div>
+                <div class="card-title">Data Source:  {{ file_source }}</div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <table id="impact_tbl" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Division</th>
+                                <th>District</th>
+                                <th>Upazila</th>
+                                <th>Union</th>
+                                <th>Union Code</th>
+                                <th>Category</th>
+                                <th>Peak Flood Depth (m)<span id="impt_peak_date"></span></th>
+                                <th>Impact</th>
+                            </tr>
+                            </thead>
+                        </table>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" onclick="export_map('impact_map')">Export</button><br>
+                        <div id="impact_map"></div>
+                        <div class="info" id="info_impact_map_div"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card-body" id="potential_div" >
+                <div class="card-title">Potential Intervention Area</div>
+                <div class="card-title">Data Source:  {{ file_source }}</div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <table id="potential_tbl" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Division</th>
+                                <th>District</th>
+                                <th>Upazila</th>
+                                <th>Union</th>
+                                <th>Union Code</th>
+                                <th>Category</th>
+                                <th>Peak Flood Depth(m)<span id="pot_peak_date"></span></th>
+                                <th>Impact</th>
+                                <th>Vulnerability Index </th>
+                                <th>Potential Damage </th>
+                                <th>Rank</th>
+                            </tr>
+                            </thead>
+                        </table>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" onclick="export_map('potential_map')">Export</button><br>
+                        <div id="potential_map"></div>
+                        <div class="info" id="info_potential_map_div"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+{% block additional-javascript %}
+
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<!--<script type="text/javascript" src="/static/plugins/html2canvas.min.js"></script>-->
+<!--<script type="text/javascript" src="/static/plugins/leaflet_export.js"></script>-->
+<script src="/static/plugins/jQuery.print.js"></script>
+<script type="text/javascript" src="/static/scripts/grcmodule/Unon_update_final_prj.js"></script>
+<script type="text/javascript" src="/static/scripts/grcmodule/flood_category_geojson.js"></script>
+<script type="text/javascript" src="/static/scripts/grcmodule/flood_jamuna_bankline_geojson.js"></script>
+<script type="text/javascript" src="/static/scripts/grcmodule/flood_landmarks_geojson.js"></script>
+<script type="text/javascript" src="/static/scripts/grcmodule/flood_river_geojson.js"></script>
+<script>
+          var geojson_data = statesData;
+          var file_source = '{{ file_source }}'
+</script>
+<script type="text/javascript" src="/static/scripts/grcmodule/eap_analysis.js"></script>
+<script>
+    function export_map(div_id)
+    {
+    console.log(div_id)
+    $('#'+div_id).print();
+    }
+</script>
+{% endblock %}

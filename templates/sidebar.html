@@ -1,0 +1,34 @@
+<!-- BEGIN SIDEBAR -->
+<div class="page-sidebar navbar-collapse ">
+	<!-- BEGIN SIDEBAR MENU -->        
+	<ul class="page-sidebar-menu">
+		<li>
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+			<div class="sidebar-toggler hidden-phone"></div>
+            <div class="top-buffer"></div>
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+		</li>
+		{% for menu in main_menu_items %}
+        <li class="{% if menu.url == request.path %}active{% endif %}">
+            <a href="{{menu.url}}">
+                <i class="{{menu.icon_class}}"></i>
+                <span class="title">{{menu.title}}</span>
+            </a>
+            <ul class="sub-menu">
+            {% for submenu in sub_menu_items %}
+                {% if submenu.parent_menu_id == menu.id %}
+                    <li class="sub-menu-li {% if submenu.url == request.path %}active{% endif %}"><a
+                            href="{{submenu.url}}">{{submenu.title}}</a></li>
+                {% endif %}
+            {% empty %}
+            {% endfor %}
+            </ul>
+        </li>
+        {% empty %}
+        {% endfor %}
+
+	</ul>
+
+	<!-- END SIDEBAR MENU -->
+</div>
+

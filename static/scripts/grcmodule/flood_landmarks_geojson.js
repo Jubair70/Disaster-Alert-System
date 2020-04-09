@@ -1,0 +1,13 @@
+var flood_landmarks_geojson = {"type":"FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"Point","coordinates":[90.0124550718859,23.88059048636428]},"properties":{"SL_NO":40,"TYPE":"District","UNDER_DIST":"MANIKGANJ","DISTRICT":"MANIKGANJ","THANA":"","THANA_NAME":"","DATASOURCE":"R&H Map"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[89.24460402441473,24.006890590353876]},"properties":{"SL_NO":22,"TYPE":"District","UNDER_DIST":"PABNA","DISTRICT":"PABNA","THANA":"","THANA_NAME":"","DATASOURCE":"IRS Image"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[89.94080933911769,24.279867692485]},"properties":{"SL_NO":39,"TYPE":"District","UNDER_DIST":"TANGAIL","DISTRICT":"TANGAIL","THANA":"","THANA_NAME":"","DATASOURCE":"R&H Map"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[89.71823930586568,24.458288818058712]},"properties":{"SL_NO":23,"TYPE":"District","UNDER_DIST":"SIRAJGANJ","DISTRICT":"SIRAJGANJ","THANA":"","THANA_NAME":"","DATASOURCE":"IRS Image"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[89.37715534104493,24.846377974201857]},"properties":{"SL_NO":17,"TYPE":"District","UNDER_DIST":"BOGRA","DISTRICT":"BOGRA","THANA":"","THANA_NAME":"","DATASOURCE":"IRS Image"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[89.95473950720118,24.915883757304066]},"properties":{"SL_NO":25,"TYPE":"District","UNDER_DIST":"JAMALPUR","DISTRICT":"JAMALPUR","THANA":"","THANA_NAME":"","DATASOURCE":"IRS Image"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[90.02072293525629,25.01485653968176]},"properties":{"SL_NO":24,"TYPE":"District","UNDER_DIST":"SHERPUR","DISTRICT":"SHERPUR","THANA":"","THANA_NAME":"","DATASOURCE":"SOB Topo Sheet"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[89.53275229730596,25.33650560965421]},"properties":{"SL_NO":15,"TYPE":"District","UNDER_DIST":"GAIBANDHA","DISTRICT":"GAIBANDHA","THANA":"","THANA_NAME":"","DATASOURCE":"LGED Road Map"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[89.246311999002,25.755655723078693]},"properties":{"SL_NO":12,"TYPE":"District","UNDER_DIST":"RANGPUR","DISTRICT":"RANGPUR","THANA":"","THANA_NAME":"","DATASOURCE":"LGED Road Map"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[89.64419335051775,25.812114417398565]},"properties":{"SL_NO":14,"TYPE":"District","UNDER_DIST":"KURIGRAM","DISTRICT":"KURIGRAM","THANA":"","THANA_NAME":"","DATASOURCE":"GPS Survey - IWM"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[89.43695137408466,25.920641914080896]},"properties":{"SL_NO":13,"TYPE":"District","UNDER_DIST":"LALMONIRHAT","DISTRICT":"LALMONIRHAT","THANA":"","THANA_NAME":"","DATASOURCE":"LGED Road Map"}}
+]}

@@ -1,0 +1,276 @@
+{% extends 'base_test.html' %}
+{% load i18n %}
+{% load app_filters %}
+{% block additional-headers %}
+<link rel="stylesheet" href="/static/plugins/dataTables1.10.20/jquery.dataTables.min.css"/>
+<link rel="stylesheet" href="/static/plugins/bootstrap-datepicker3/bootstrap-datepicker3.min.css"/>
+
+{% endblock %}
+{% block content %}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="fa fa-file-archive    icon-gradient bg-danger">
+                </i>
+            </div>
+            <div>Update Cyclone Weightage Parameters</div>
+        </div>
+       
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <form id="user_form" method="post" action="/modules/update-cyclone-weightage-parameters/" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-5">
+                            <div class="position-relative form-group ">
+                                <label>Household Structure</label>
+                            </div>
+                            </div>
+                             <div class="col-md-1">
+                            <div class="position-relative form-group ">
+                               <span >&#61;</span>
+                            </div>
+                            </div>
+<!--                            <div class="row">-->
+
+                                <div class="col-md-3">
+                            <div class="position-relative form-group ">
+                                <label>Pucca</label>
+                            </div>
+                            </div>
+                                <div class="col-md-1">
+                            <div class="position-relative form-group ">
+                                <label>&#215;</label>
+                            </div>
+                            </div>
+                                 <div class="col-md-2">
+                            <div class="position-relative form-group ">
+                                <input name="pucca" type=number step=0.01 class="form-control" required>
+                            </div>
+                            </div>
+
+<!--                            </div>-->
+
+                        </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6"></div>
+<!--                        <div class="row">-->
+                            <div class="col-md-3">
+                                <div class="position-relative form-group ">
+                                    <label>Semi Pucca</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-1">
+                                <div class="position-relative form-group ">
+                                    <label>&#215;</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="position-relative form-group ">
+                                    <input type=number step=0.01 name="s_pucca" class="form-control" required>
+                                </div>
+                            </div>
+<!--                        </div>-->
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"></div>
+<!--                        <div class="row">-->
+
+                            <div class="col-md-3">
+                                <div class="position-relative form-group ">
+                                    <label>Kutcha</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-1">
+                                <div class="position-relative form-group ">
+                                    <label>&#215;</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="position-relative form-group ">
+                                    <input  name="kutcha" type=number step=0.01  class="form-control" required>
+                                </div>
+                            </div>
+
+<!--                        </div>-->
+
+                    </div>
+
+                     <div class="row">
+                        <div class="col-md-6"></div>
+<!--                        <div class="row">-->
+                            <div class="col-md-3">
+                                <div class="position-relative form-group ">
+                                    <label>Jhupri</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-1">
+                                <div class="position-relative form-group ">
+                                    <label>&#215;</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="position-relative form-group ">
+                                    <input  name="jhupri" type=number step=0.01  class="form-control" required>
+                                </div>
+                            </div>
+<!--                        </div>-->
+
+                    </div>
+
+
+
+                    <div class="row">
+                            <div class="col-md-5">
+                            <div class="position-relative form-group ">
+                                <label>Vulnerability Index</label>
+                            </div>
+                            </div>
+                             <div class="col-md-1">
+                            <div class="position-relative form-group ">
+                               <span >&#61;</span>
+                            </div>
+                            </div>
+<!--                            <div class="row">-->
+                                <div class="col-md-3">
+                            <div class="position-relative form-group ">
+                                <label>Household Structure</label>
+                            </div>
+                            </div>
+                                <div class="col-md-1">
+                            <div class="position-relative form-group ">
+                                <label>&#215;</label>
+                            </div>
+                            </div>
+                                 <div class="col-md-2">
+                            <div class="position-relative form-group ">
+                                <input name="hh_structure" type=number step=0.01  class="form-control" required>
+                            </div>
+                            </div>
+<!--                            </div>-->
+
+                        </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6"></div>
+<!--                        <div class="row">-->
+                            <div class="col-md-3">
+                                <div class="position-relative form-group ">
+                                    <label>Dependent Population</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-1">
+                                <div class="position-relative form-group ">
+                                    <label>&#215;</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="position-relative form-group ">
+                                    <input name="dp_population" type=number step=0.01 class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+<!--                    </div>-->
+                    <div class="row">
+                        <div class="col-md-6"></div>
+<!--                        <div class="row">-->
+                            <div class="col-md-3">
+                                <div class="position-relative form-group ">
+                                    <label>Ratio Of CPP Volunteers</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-1">
+                                <div class="position-relative form-group ">
+                                    <label>&#215;</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="position-relative form-group ">
+                                    <input name="cpp_volunteer" type=number step=0.01  class="form-control " required>
+                                </div>
+                            </div>
+<!--                        </div>-->
+
+                    </div>
+
+                     <div class="row">
+                        <div class="col-md-6"></div>
+<!--                        <div class="row">-->
+                            <div class="col-md-3">
+                                <div class="position-relative form-group ">
+                                    <label>Ultra Poor Population</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-1">
+                                <div class="position-relative form-group ">
+                                    <label>&#215;</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 pull-right">
+                                <div class="position-relative form-group ">
+                                    <input name="ultra_poor" class="form-control" type=number step=0.01  required>
+                                </div>
+                            </div>
+                        </div>
+
+<!--                    </div>-->
+
+                      <div class="row">
+                        <div class="col-md-6"></div>
+                            <div class="col-md-3">
+                                <div class="position-relative form-group ">
+                                    <label>Unserved Population</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-1">
+                                <div class="position-relative form-group ">
+                                    <label>&#215;</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 pull-right">
+                                <div class="position-relative form-group ">
+                                    <input name="unserved_population" class="form-control" type=number step=0.01  required>
+                                </div>
+                            </div>
+                        </div>
+
+
+                <button type="submit" class="mt-1 btn btn-primary" id="submit" >Submit</button>
+                <button onclick="history.go(-1);" style="margin-right:10px;" type="button" class="mt-1 btn btn-warning">Cancel</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block additional-javascript %}
+<script>
+console.log({{kutcha | safe}})
+$("input[name='pucca']").val({{pucca | safe}});
+$("input[name='s_pucca']").val({{s_pucca | safe}})
+$("input[name='kutcha']").val({{kutcha | safe}})
+$("input[name='jhupri']").val({{jhupri | safe}})
+$("input[name='hh_structure']").val({{hh_structure | safe}})
+$("input[name='dp_population']").val({{dp_population | safe}})
+$("input[name='cpp_volunteer']").val({{cpp_volunteer | safe}})
+$("input[name='ultra_poor']").val({{ultra_poor | safe}})
+$("input[name='unserved_population']").val({{unserved_population | safe}})
+</script>
+{% endblock %}

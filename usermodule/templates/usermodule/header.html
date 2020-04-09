@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>IOM-OIM</title>		
+		<link rel="stylesheet" href="/static/dashboard/assets/css/style.css">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css"/>
+
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+        <style>
+            #map {
+            width: auto;
+            height: 600px;
+        }
+
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+
+        .legend {
+            text-align: left;
+            line-height: 18px;
+            color: #555;
+        }
+
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+
+        .text-labels
+        {
+            white-space:nowrap;
+{#  text-shadow: 0 0 0.1em black, 0 0 0.1em black,#}
+{#        0 0 0.1em black,0 0 0.1em black,0 0 0.1em;#}
+  color: black;
+            font-weight: bold;
+        }
+
+{#        table.paleBlueRows {#}
+{#            border: 1px solid #FFFFFF;#}
+{#            width: 350px;#}
+{#            display: block;#}
+{#            border-collapse: collapse;#}
+{#        }#}
+{##}
+{#        table.paleBlueRows thead, tbody {#}
+{#            display: block;#}
+{#        }#}
+{##}
+{#        table.paleBlueRows tbody {#}
+{##}
+{#        }#}
+{##}
+{#        table.paleBlueRows td, table.paleBlueRows th {#}
+{#            border: 1px solid #FFFFFF;#}
+{#            padding: 3px 2px;#}
+{#        }#}
+{##}
+{#        table.paleBlueRows tbody td {#}
+{#            font-size: 13px;#}
+{#            width: 100%;#}
+{#        }#}
+{##}
+{#        table.paleBlueRows tr:nth-child(even) {#}
+{#            background: #D0E4F5;#}
+{#        }#}
+{##}
+{#        table.paleBlueRows thead {#}
+{#            background: #1e90ff;#}
+{#            border-bottom: 5px solid #FFFFFF;#}
+{#        }#}
+{##}
+{#        table.paleBlueRows th {#}
+{#            background: #1e90ff;#}
+{#            font-size: 13px;#}
+{#            font-weight: bold;#}
+{#            color: #FFFFFF;#}
+{#            text-align: center;#}
+{#            border-left: 2px solid #FFFFFF;#}
+{#            width: 100%;#}
+{#        }#}
+{##}
+{#        table.paleBlueRows thead th:first-child {#}
+{#            border-left: none;#}
+{#        }#}
+{##}
+{#        table.paleBlueRows tfoot {#}
+{#            font-size: 14px;#}
+{#            font-weight: bold;#}
+{#            color: #333333;#}
+{#            background: #D0E4F5;#}
+{#            border-top: 3px solid #444444;#}
+{#        }#}
+{##}
+{#        table.paleBlueRows tfoot td {#}
+{#            font-size: 14px;#}
+{#        }#}
+
+        @media print {
+            #map {
+                width: 780px;
+                height: 700px;
+                margin-left: -20px;
+            }
+
+            .info {
+                padding: 6px 8px;
+                font: 14px/16px Arial, Helvetica, sans-serif;
+                background: white;
+                background: rgba(255, 255, 255, 0.8);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                border-radius: 5px;
+            }
+
+            .info h4 {
+                margin: 0 0 5px;
+                color: #777;
+            }
+
+            .legend {
+                text-align: left;
+                line-height: 18px;
+                color: #555;
+            }
+
+            .legend i {
+                width: 18px;
+                height: 18px;
+                float: left;
+                margin-right: 8px;
+                opacity: 1;
+            }
+        }
+
+            .header-main .navbar-nav > li > a.active {
+                background-color: #EB1990;
+            }
+
+            .header-main .navbar-nav > li > a:hover {
+                background-color: #a73991;
+            }
+
+            .header-main {
+
+                background-color: rgba(7, 0, 138, 0.37);
+            }
+
+        .header-outer-wrap.hide-top-header .header-main {
+            background-color: #0033a0;
+                }
+
+            /*======================================
+=            footer first section            =
+======================================*/
+.footer-first-section {
+  background-color: #c1c1c1;
+  /*background: url(../images/home/slide1.jpg) no-repeat; */
+}
+.footer-first-section .copy-right {
+  font-size: 12px;
+  padding: 26px 0;
+}
+@media (max-width: 767px) {
+  .footer-first-section .copy-right {
+    text-align: center;
+    padding-bottom: 0;
+  }
+}
+.footer-first-section .social {
+  margin-top: 25px;
+}
+@media (max-width: 767px) {
+  .footer-first-section .social {
+    text-align: center;
+  }
+}
+.footer-first-section .social li a {
+  padding: 0 6px;
+  display: inline-block;
+}
+.footer-first-section .social li .linkedin svg {
+  width: 20px;
+  height: 20px;
+}
+.footer-first-section .social svg {
+  width: 20px;
+  height: 20px;
+}
+/*=====  End of footer first section  ======*/
+        </style>
+	</head>
+	<body>
